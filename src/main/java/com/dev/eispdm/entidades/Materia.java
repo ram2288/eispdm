@@ -7,17 +7,21 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "estado_equipos")
-public class EstadoEquipo implements Serializable {
+@Table(name = "materias")
+public class Materia implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idEstado;
+    private Integer idMateria;
     @Column(nullable = false, unique = true)
-    private String estado;
-    @OneToMany(mappedBy = "estadoEquipo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Equipo> equipos;
+    private String Materia;
+    @Column(nullable = false, unique = true)
+    private String Sigla;
+    @OneToMany(mappedBy = "materia", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Prestamo> prestamos;
 }
