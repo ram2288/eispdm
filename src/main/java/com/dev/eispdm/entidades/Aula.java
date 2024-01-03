@@ -16,6 +16,7 @@ import java.util.Set;
 public class Aula implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_aula")
     private Integer idAula;
     @Column(nullable = false, unique = true)
     private String aula;

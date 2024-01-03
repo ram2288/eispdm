@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_rol")
     private Integer idRol;
     @Column(nullable = false, unique = true)
     private String Rol;

@@ -18,7 +18,8 @@ import java.util.Map;
 public class AulaControlador {
     @Autowired
     private AulaServicio aulaServicio = new AulaServicio();
-
+    @Autowired
+    private AulaRepository aulaRepository;
 
     @GetMapping("/aula")
     public List<AulaDto> listaAula(){
@@ -40,6 +41,7 @@ public class AulaControlador {
     }
     @PostMapping("/aula")
     public AulaDto agregarAula(@RequestBody AulaDto aulaDto){
+        //return this.aulaRepository.save(aula);
         return this.aulaServicio.guardarAula(aulaDto);
         //return null;
     }
