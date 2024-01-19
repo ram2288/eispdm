@@ -15,8 +15,6 @@ public class AulaServicio implements IAulaServicio {
     private AulaRepository aulaRepository;
     @Autowired
     private AulaMapper aulaMapper;
-    //@Autowired
-    //private Aula au;
 
     @Override
     public List<AulaDto> listarAulas() {
@@ -24,7 +22,15 @@ public class AulaServicio implements IAulaServicio {
         List <Aula> aulaList = this.aulaRepository.findAll();
         List<AulaDto> aulaDto =  aulaMapper.AulaToAulaDtos(aulaList);
         return aulaDto;
-        //return this.aulaRepository.findAll();
+    }
+
+    @Override
+    public List<AulaDto> listarAulaAsc() {
+
+        /*List <Aula> aulaList = this.aulaRepository.findAllAulaAsc();
+        List<AulaDto> aulaDto =  aulaMapper.AulaToAulaDtos(aulaList);
+        return aulaDto;*/
+        return null;
     }
 
     @Override

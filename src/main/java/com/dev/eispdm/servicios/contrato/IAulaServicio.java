@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IAulaServicio {
     List<AulaDto> listarAulas();
+    List<AulaDto> listarAulaAsc();
     List<AulaDto> listarAulasAscendente(String aulas);
     List<AulaDto> listarAulasContengan(String aulas);
     AulaDto buscarAulaId(Integer idAula);

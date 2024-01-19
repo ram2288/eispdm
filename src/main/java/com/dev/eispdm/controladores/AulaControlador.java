@@ -1,8 +1,6 @@
 package com.dev.eispdm.controladores;
 
 import com.dev.eispdm.dtos.AulaDto;
-import com.dev.eispdm.entidades.Aula;
-import com.dev.eispdm.repositorios.AulaRepository;
 import com.dev.eispdm.servicios.implementacion.AulaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +16,26 @@ import java.util.Map;
 public class AulaControlador {
     @Autowired
     private AulaServicio aulaServicio = new AulaServicio();
-    @Autowired
-    private AulaRepository aulaRepository;
 
     @GetMapping("/aula")
     public List<AulaDto> listaAula(){
         List<AulaDto> aula= this.aulaServicio.listarAulas();
         return aula;
     }
+    @GetMapping("/aulaA")
+    public List<AulaDto> listaAulaAscendente(){
+       /* List<AulaDto> aula= this.aulaServicio.listarAulaAsc();
+        return aula;*/
+        return null;
+    }
 
-    @GetMapping("/aulass/{aulas}")
-    public List<AulaDto> listaAulaAsc(@PathVariable String aulas){
+    @GetMapping("/aulasfind/{aulas}")
+    public List<AulaDto> buscarNombre(@PathVariable String aulas){
         List<AulaDto> aula= this.aulaServicio.listarAulasAscendente(aulas);
         return aula;
-       // return null;
+
     }
-    @GetMapping("/aulasss/{aulas}")
+    @GetMapping("/aulasCont/{aulas}")
     public List<AulaDto> listaAulaCont(@PathVariable String aulas){
         List<AulaDto> aula= this.aulaServicio.listarAulasContengan(aulas);
         return aula;
@@ -51,7 +53,7 @@ public class AulaControlador {
         return ResponseEntity.ok(aulaDto);
        // return null;
     }
-    @GetMapping("/aulas/{aulas}")
+    @GetMapping("/aulasNom/{aulas}")
     public ResponseEntity<AulaDto> optenerAulaNombre(@PathVariable String aulas){
         AulaDto aulaDto= this.aulaServicio.buscarAulaNombre(aulas);
         return ResponseEntity.ok(aulaDto);
@@ -59,11 +61,9 @@ public class AulaControlador {
     }
     @DeleteMapping("aula/{id}")
     public ResponseEntity<Map<String,Boolean>> eliminarAula(@PathVariable int id){
-        //AulaDto aulaDto = aulaServicio.buscarAulaId(id);
         this.aulaServicio.eliminarAulaId(id);
         Map<String,Boolean>respuesta = new HashMap<>();
         respuesta.put("eliminado",Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
-       // return null;
     }
 }

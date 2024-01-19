@@ -1,16 +1,21 @@
 package com.dev.eispdm.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "aulas")
 public class Aula implements Serializable {
@@ -20,6 +25,11 @@ public class Aula implements Serializable {
     private Integer idAula;
     @Column(nullable = false, unique = true)
     private String aula;
+   // @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id_carrera", nullable = false)
+    private Carrera carrera ;
+    @JsonIgnore
     @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Equipo> equipos;
+    private List<Equipo> equipos ;
 }

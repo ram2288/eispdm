@@ -10,5 +10,7 @@ public interface AulaRepository extends JpaRepository<Aula,Integer> {
     Optional<Aula> findByAula(String nombre);
     List<Aula> findByAulaContainingOrderByAulaAsc(String name);
     List<Aula> findByAulaContaining(String aulas);
+   // List<Aula> findAllAulaAsc();
+
 
 }

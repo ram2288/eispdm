@@ -2,9 +2,16 @@ package com.dev.eispdm.entidades;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "detalle_prestamos")
 public class DetallePrestamo implements Serializable {

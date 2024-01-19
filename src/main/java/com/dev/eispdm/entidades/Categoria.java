@@ -2,14 +2,17 @@ package com.dev.eispdm.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "categorias")
 public class Categoria implements Serializable {
@@ -19,5 +22,5 @@ public class Categoria implements Serializable {
     @Column(nullable = false, unique = true)
     private String categoria;
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Equipo> equipos;
+    private List<Equipo> equipos;
 }

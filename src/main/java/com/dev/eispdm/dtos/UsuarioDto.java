@@ -1,0 +1,25 @@
+package com.dev.eispdm.dtos;
+
+import com.dev.eispdm.entidades.Carrera;
+import com.dev.eispdm.entidades.Rol;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UsuarioDto implements Serializable {
+    private Integer idUsuario;
+    private String nomUsuario;
+    private String apePaterno;
+    private String apeMaterno;
+    private String ci;
+    private String usuario;
+    private String pass;
+    private RolDto rol;
+    private CarreraDto carrera;
+}

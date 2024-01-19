@@ -1,11 +1,20 @@
 package com.dev.eispdm.entidades;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "carreras")
 public class Carrera implements Serializable {
@@ -14,8 +23,19 @@ public class Carrera implements Serializable {
     private Integer idCarrera;
     @Column(nullable = false, unique = true)
     private String carrera;
+    @JsonIgnore
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Estudiante> estudiantes;
+    private List<Estudiante> estudiantes;
+    @JsonIgnore
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Docente> docentes;
+    private List<Docente> docentes;
+    @JsonIgnore
+    @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Aula> aulas;
+    @JsonIgnore
+    @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Materia> materias;
+    @JsonIgnore
+    @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;
 }

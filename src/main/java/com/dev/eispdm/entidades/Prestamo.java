@@ -2,11 +2,20 @@ package com.dev.eispdm.entidades;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "prestamos")
 public class Prestamo implements Serializable {
@@ -28,6 +37,6 @@ public class Prestamo implements Serializable {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
     @OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<DetallePrestamo> detallePrestamo;
+    private List<DetallePrestamo> detallePrestamo;
 
 }

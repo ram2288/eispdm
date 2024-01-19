@@ -12,5 +12,5 @@ import java.util.Set;
 public class EstadoEquipoDto {
     private Integer idEstado;
     private String estado;
-    private Set<Equipo> equipos;
+
 }
