@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+//@Builder
 public class DetallePrestamoDto {
     private Integer idDetallePrestamo;
     private EquipoDto equipo;

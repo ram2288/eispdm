@@ -4,6 +4,7 @@ import com.dev.eispdm.dtos.DocenteDto;
 import com.dev.eispdm.dtos.EquipoDto;
 import com.dev.eispdm.servicios.implementacion.EquipoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +19,12 @@ public class EquipoControlador {
     @Autowired
     private EquipoServicio equipoServicio;
     @GetMapping("/equipo")
-    public List<EquipoDto> listarEquipos(){
-        return equipoServicio.listarEquipos();
+    public ResponseEntity< List<EquipoDto>> listarEquipos(){
+        return new ResponseEntity<>(equipoServicio.listarEquipos(), HttpStatus.OK);
     }
     @PostMapping("/equipo")
-    public EquipoDto guardarEquipo(@RequestBody EquipoDto equipoDto){
-        return equipoServicio.guardarEquipo(equipoDto);
+    public ResponseEntity< EquipoDto> guardarEquipo(@RequestBody EquipoDto equipoDto){
+        return new ResponseEntity<>(equipoServicio.guardarEquipo(equipoDto),HttpStatus.OK);
     }
     @GetMapping("/equipo/{id}")
     public ResponseEntity<EquipoDto> buscarEquipoId(@PathVariable Integer id){

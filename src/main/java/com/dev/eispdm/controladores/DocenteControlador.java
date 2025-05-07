@@ -5,6 +5,7 @@ import com.dev.eispdm.dtos.DocenteDto;
 import com.dev.eispdm.servicios.implementacion.DocenteServicio;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class DocenteControlador {
     @Autowired
     private DocenteServicio docenteServicio;
     @GetMapping("/docente")
-    public List<DocenteDto> listarDocentes(){
-        return docenteServicio.ListaDocente();
+    public ResponseEntity< List<DocenteDto>> listarDocentes(){
+        return new ResponseEntity<>(docenteServicio.ListaDocente(), HttpStatus.OK);
     }
     @PostMapping("/docente")
-    public DocenteDto guardarDocente(@RequestBody DocenteDto docenteDto){
-        return docenteServicio.guardarDocente(docenteDto);
+    public ResponseEntity< DocenteDto> guardarDocente(@RequestBody DocenteDto docenteDto){
+        return new ResponseEntity<>(docenteServicio.guardarDocente(docenteDto),HttpStatus.OK);
     }
     @GetMapping("/docente{id}")
     public ResponseEntity<DocenteDto> buscarDocenteID(@PathVariable Integer id){

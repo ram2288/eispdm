@@ -20,7 +20,7 @@ public interface RolMapper {
 
 
     @Mappings({
-            @Mapping(source = "rol",target = "Rol")
+            @Mapping(source = "rol",target = "rol")
     })
     RolDto rolToRolDto(Rol source);
     Rol RolDtoToRol(RolDto source);

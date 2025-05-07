@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 public class UsuarioDto implements Serializable {
     private Integer idUsuario;
     private String nomUsuario;

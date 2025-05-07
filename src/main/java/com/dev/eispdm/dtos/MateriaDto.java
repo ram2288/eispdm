@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 public class MateriaDto implements Serializable {
     private Integer idMateria;
     private String Materia;

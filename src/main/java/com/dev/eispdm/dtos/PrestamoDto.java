@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 public class PrestamoDto implements Serializable {
     private  Integer idPrestamo;
     private LocalDateTime fePrestamos;

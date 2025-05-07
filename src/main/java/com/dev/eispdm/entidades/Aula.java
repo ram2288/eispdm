@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 @Entity
 @Table(name = "aulas")
 public class Aula implements Serializable {
@@ -25,7 +25,7 @@ public class Aula implements Serializable {
     private Integer idAula;
     @Column(nullable = false, unique = true)
     private String aula;
-   // @JsonIgnore
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_carrera", nullable = false)
     private Carrera carrera ;

@@ -7,8 +7,10 @@ import com.dev.eispdm.repositorios.AulaRepository;
 import com.dev.eispdm.servicios.contrato.IAulaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+@Transactional
 @Service
 public class AulaServicio implements IAulaServicio {
     @Autowired
@@ -63,6 +65,7 @@ public class AulaServicio implements IAulaServicio {
     public AulaDto guardarAula(AulaDto aulaDto) {
         Aula aula = aulaMapper.aulaDtoToAula(aulaDto);
         this.aulaRepository.save(aula);
+        aulaDto = aulaMapper.aulaToAulaDto(aula);
         return aulaDto;
     }
 

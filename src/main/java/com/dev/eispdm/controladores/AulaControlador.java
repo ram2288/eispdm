@@ -3,12 +3,14 @@ package com.dev.eispdm.controladores;
 import com.dev.eispdm.dtos.AulaDto;
 import com.dev.eispdm.servicios.implementacion.AulaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("prestamo-app")
@@ -17,47 +19,54 @@ public class AulaControlador {
     @Autowired
     private AulaServicio aulaServicio = new AulaServicio();
 
-    @GetMapping("/aula")
-    public List<AulaDto> listaAula(){
-        List<AulaDto> aula= this.aulaServicio.listarAulas();
-        return aula;
-    }
+
     @GetMapping("/aulaA")
     public List<AulaDto> listaAulaAscendente(){
        /* List<AulaDto> aula= this.aulaServicio.listarAulaAsc();
         return aula;*/
+
         return null;
     }
 
     @GetMapping("/aulasfind/{aulas}")
-    public List<AulaDto> buscarNombre(@PathVariable String aulas){
-        List<AulaDto> aula= this.aulaServicio.listarAulasAscendente(aulas);
-        return aula;
+    public ResponseEntity <List<AulaDto>>buscarNombre(@PathVariable String aulas){
+        return new ResponseEntity(aulaServicio.listarAulasAscendente(aulas),HttpStatus.OK);
 
     }
     @GetMapping("/aulasCont/{aulas}")
-    public List<AulaDto> listaAulaCont(@PathVariable String aulas){
-        List<AulaDto> aula= this.aulaServicio.listarAulasContengan(aulas);
-        return aula;
-        //return null;
+    public ResponseEntity <List<AulaDto>> listaAulaCont(@PathVariable String aulas){
+        return new ResponseEntity(aulaServicio.listarAulasContengan(aulas),HttpStatus.OK);
     }
-    @PostMapping("/aula")
-    public AulaDto agregarAula(@RequestBody AulaDto aulaDto){
-        //return this.aulaRepository.save(aula);
-        return this.aulaServicio.guardarAula(aulaDto);
-        //return null;
-    }
+
     @GetMapping("/aula/{id}")
-    public ResponseEntity<AulaDto> optenerAulaId(@PathVariable int id){
-        AulaDto aulaDto= this.aulaServicio.buscarAulaId(id);
+    public ResponseEntity<Optional<AulaDto>> optenerAulaId(@PathVariable int id){
+        Optional<AulaDto> aulaDto= Optional.ofNullable(this.aulaServicio.buscarAulaId(id));
         return ResponseEntity.ok(aulaDto);
-       // return null;
     }
     @GetMapping("/aulasNom/{aulas}")
     public ResponseEntity<AulaDto> optenerAulaNombre(@PathVariable String aulas){
         AulaDto aulaDto= this.aulaServicio.buscarAulaNombre(aulas);
         return ResponseEntity.ok(aulaDto);
-        //return null;
+    }
+    @GetMapping("/aula")
+    public ResponseEntity <List<AulaDto>> listaAula(){
+        return new ResponseEntity(aulaServicio.listarAulas(), HttpStatus.OK);
+    }
+    @PostMapping("/aula")
+    public ResponseEntity<AulaDto> agregarAula(@RequestBody AulaDto aulaDto){
+        try {
+            return new ResponseEntity(aulaServicio.guardarAula(aulaDto),HttpStatus.OK);
+        }catch (Exception e){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PutMapping("/aula")
+    public ResponseEntity<AulaDto> actulizzarAula(@RequestBody AulaDto aulaDto){
+        try {
+            return new ResponseEntity(aulaServicio.guardarAula(aulaDto),HttpStatus.OK);
+        }catch (Exception e){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
     @DeleteMapping("aula/{id}")
     public ResponseEntity<Map<String,Boolean>> eliminarAula(@PathVariable int id){

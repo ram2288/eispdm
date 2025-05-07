@@ -7,9 +7,11 @@ import com.dev.eispdm.repositorios.EquipoRepository;
 import com.dev.eispdm.servicios.contrato.IEquipoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class EquipoServicio implements IEquipoServicio {
     @Autowired
@@ -19,7 +21,7 @@ public class EquipoServicio implements IEquipoServicio {
     @Override
     public List<EquipoDto> listarEquipos() {
         List<Equipo> equipos = equipoRepository.findAll();
-        List<EquipoDto> equipoDtos = equipoMapper.EquiposToEquipoDtos(equipos);
+        List<EquipoDto> equipoDtos = equipoMapper.equiposToEquipoDtos(equipos);
         return equipoDtos;
     }
 
@@ -32,7 +34,7 @@ public class EquipoServicio implements IEquipoServicio {
 
     @Override
     public EquipoDto guardarEquipo(EquipoDto equipoDto) {
-        Equipo equipo= equipoMapper.EquipoDtoToEquipo(equipoDto);
+        Equipo equipo= equipoMapper.equipoDtoToEquipo(equipoDto);
         equipoRepository.save(equipo);
         return equipoDto;
     }

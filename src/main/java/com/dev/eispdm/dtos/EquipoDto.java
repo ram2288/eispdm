@@ -1,6 +1,7 @@
 package com.dev.eispdm.dtos;
 
 import com.dev.eispdm.entidades.Aula;
+import com.dev.eispdm.entidades.Carrera;
 import com.dev.eispdm.entidades.Categoria;
 import com.dev.eispdm.entidades.EstadoEquipo;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+
 public class EquipoDto {
     private Integer idEquipo;
     private String nomEquipo;
@@ -25,4 +26,5 @@ public class EquipoDto {
     private CategoriaDto categoria;
     private AulaDto aula;
     private EstadoEquipoDto estadoEquipo;
+    private CarreraDto carrera;
 }

@@ -7,9 +7,10 @@ import com.dev.eispdm.repositorios.DocenteRepository;
 import com.dev.eispdm.servicios.contrato.IDocenteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Transactional
 @Service
 public class DocenteServicio implements IDocenteServicio {
     @Autowired

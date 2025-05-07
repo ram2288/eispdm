@@ -5,6 +5,7 @@ import com.dev.eispdm.dtos.DetallePrestamoDto;
 import com.dev.eispdm.servicios.implementacion.CarreraServico;
 import com.dev.eispdm.servicios.implementacion.DetallePrestamoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +22,12 @@ public class DetallePrestamoControlador {
 
 
     @GetMapping("/detallePrestamo")
-    public List<DetallePrestamoDto> listaDetallePrestamo(){
-        List<DetallePrestamoDto> detallePrestamoDtos= this.detallePrestamoServicio.ListarDetallePrestamos();
-        return detallePrestamoDtos;
+    public ResponseEntity< List<DetallePrestamoDto>> listaDetallePrestamo(){
+        return new ResponseEntity<>(detallePrestamoServicio.ListarDetallePrestamos(), HttpStatus.OK);
     }
     @PostMapping("/detallePrestamo")
-    public DetallePrestamoDto agregarDetallePrestamo (@RequestBody DetallePrestamoDto detallePrestamoDto){
-        return this.detallePrestamoServicio.guardarDetallePrestamo(detallePrestamoDto);
+    public ResponseEntity<DetallePrestamoDto> agregarDetallePrestamo (@RequestBody DetallePrestamoDto detallePrestamoDto){
+        return new ResponseEntity<>(detallePrestamoServicio.guardarDetallePrestamo(detallePrestamoDto),HttpStatus.OK);
     }
     @GetMapping("/detallePrestamo/{id}")
     public ResponseEntity<DetallePrestamoDto> buscarDetallePrestamoId(@PathVariable int id){

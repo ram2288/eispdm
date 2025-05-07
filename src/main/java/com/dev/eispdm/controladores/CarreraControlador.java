@@ -3,6 +3,7 @@ package com.dev.eispdm.controladores;
 import com.dev.eispdm.dtos.CarreraDto;
 import com.dev.eispdm.servicios.implementacion.CarreraServico;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +20,13 @@ public class CarreraControlador {
 
 
     @GetMapping("/carrera")
-    public List<CarreraDto> listaCarrera(){
-        List<CarreraDto> carreras= this.carreraServico.ListarCarreras();
-        return carreras;
+    public ResponseEntity <List<CarreraDto>>  listaCarrera(){
+        return new ResponseEntity(carreraServico.ListarCarreras(), HttpStatus.OK);
     }
 
     @PostMapping("/carrera")
-    public CarreraDto agregarCarrera (@RequestBody CarreraDto carreraDto){
-        return this.carreraServico.guardarCarrera(carreraDto);
+    public ResponseEntity< CarreraDto> agregarCarrera (@RequestBody CarreraDto carreraDto){
+        return new ResponseEntity<>(carreraServico.guardarCarrera(carreraDto),HttpStatus.OK);
     }
     @GetMapping("/carrera/{id}")
     public ResponseEntity<CarreraDto> optenerAulaId(@PathVariable int id){
