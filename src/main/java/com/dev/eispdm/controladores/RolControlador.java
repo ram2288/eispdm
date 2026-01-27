@@ -17,23 +17,27 @@ import java.util.Map;
 public class RolControlador {
     @Autowired
     private RolServicio rolServicio;
+
     @GetMapping("/rol")
-    public ResponseEntity< List<RolDto>> listarRol(){
+    public ResponseEntity<List<RolDto>> listarRol() {
         return new ResponseEntity<>(rolServicio.listarRol(), HttpStatus.OK);
     }
+
     @PostMapping("/rol")
-    public ResponseEntity< RolDto> guardarRol(@RequestBody RolDto rolDto){
+    public ResponseEntity<RolDto> guardarRol(@RequestBody RolDto rolDto) {
         return new ResponseEntity<>(rolServicio.guardarRol(rolDto), HttpStatus.CREATED);
     }
+
     @GetMapping("/rol/{id}")
-    public ResponseEntity< RolDto> buscarRolId(@PathVariable Integer id){
+    public ResponseEntity<RolDto> buscarRolId(@PathVariable Integer id) {
         return new ResponseEntity<>(rolServicio.buscarRolId(id), HttpStatus.OK);
     }
+
     @DeleteMapping("rol/{id}")
-    public ResponseEntity<Map<String,Boolean>> eliminarRol(@PathVariable Integer id){
+    public ResponseEntity<Map<String, Boolean>> eliminarRol(@PathVariable Integer id) {
         rolServicio.eliminaRol(id);
-        Map<String,Boolean>respuesta = new HashMap<>();
-        respuesta.put("eliminado",Boolean.TRUE);
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

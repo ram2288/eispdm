@@ -20,24 +20,26 @@ public class CarreraControlador {
 
 
     @GetMapping("/carrera")
-    public ResponseEntity <List<CarreraDto>>  listaCarrera(){
+    public ResponseEntity<List<CarreraDto>> listaCarrera() {
         return new ResponseEntity(carreraServico.ListarCarreras(), HttpStatus.OK);
     }
 
     @PostMapping("/carrera")
-    public ResponseEntity< CarreraDto> agregarCarrera (@RequestBody CarreraDto carreraDto){
-        return new ResponseEntity<>(carreraServico.guardarCarrera(carreraDto),HttpStatus.OK);
+    public ResponseEntity<CarreraDto> agregarCarrera(@RequestBody CarreraDto carreraDto) {
+        return new ResponseEntity<>(carreraServico.guardarCarrera(carreraDto), HttpStatus.OK);
     }
+
     @GetMapping("/carrera/{id}")
-    public ResponseEntity<CarreraDto> optenerAulaId(@PathVariable int id){
-        CarreraDto aulaDto= this.carreraServico.buscarCarreraId(id);
+    public ResponseEntity<CarreraDto> optenerAulaId(@PathVariable int id) {
+        CarreraDto aulaDto = this.carreraServico.buscarCarreraId(id);
         return ResponseEntity.ok(aulaDto);
     }
+
     @DeleteMapping("carrera/{id}")
-    public ResponseEntity<Map<String,Boolean>> eliminarCarrera(@PathVariable int id){
+    public ResponseEntity<Map<String, Boolean>> eliminarCarrera(@PathVariable int id) {
         this.carreraServico.eliminarCarreraId(id);
-        Map<String,Boolean>respuesta = new HashMap<>();
-        respuesta.put("eliminado",Boolean.TRUE);
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

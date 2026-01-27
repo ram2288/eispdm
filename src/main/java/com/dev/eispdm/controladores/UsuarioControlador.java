@@ -17,23 +17,27 @@ import java.util.Map;
 public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
+
     @GetMapping("/usuario")
-    public ResponseEntity< List<UsuarioDto>> listarUsuario(){
+    public ResponseEntity<List<UsuarioDto>> listarUsuario() {
         return new ResponseEntity<>(usuarioServicio.listarUsuario(), HttpStatus.OK);
     }
+
     @PostMapping("/usuario")
-    public ResponseEntity< UsuarioDto> guardarUsuario(@RequestBody UsuarioDto usuarioDto){
+    public ResponseEntity<UsuarioDto> guardarUsuario(@RequestBody UsuarioDto usuarioDto) {
         return new ResponseEntity<>(usuarioServicio.guardarUsuario(usuarioDto), HttpStatus.CREATED);
     }
+
     @GetMapping("/usuario/{id}")
-    public ResponseEntity< UsuarioDto> buscarUsuarioId(@PathVariable Integer id){
+    public ResponseEntity<UsuarioDto> buscarUsuarioId(@PathVariable Integer id) {
         return new ResponseEntity<>(usuarioServicio.buscarUsuarioId(id), HttpStatus.OK);
     }
+
     @DeleteMapping("usuario/{id}")
-    public ResponseEntity<Map<String,Boolean>> eliminarUsuario(@PathVariable Integer id){
+    public ResponseEntity<Map<String, Boolean>> eliminarUsuario(@PathVariable Integer id) {
         usuarioServicio.eliminaUsuario(id);
-        Map<String,Boolean>respuesta = new HashMap<>();
-        respuesta.put("eliminado",Boolean.TRUE);
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }

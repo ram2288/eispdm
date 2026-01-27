@@ -17,23 +17,27 @@ import java.util.Map;
 public class PrestamoControlador {
     @Autowired
     private PrestamoServicio prestamoServicio;
+
     @GetMapping("/prestamo")
-    public ResponseEntity< List<PrestamoDto>> listarPrestamos(){
+    public ResponseEntity<List<PrestamoDto>> listarPrestamos() {
         return new ResponseEntity<>(prestamoServicio.listarPrestamo(), HttpStatus.OK);
     }
+
     @PostMapping("/prestamo")
-    public ResponseEntity< PrestamoDto> guardarPrestamo(@RequestBody PrestamoDto prestamoDto){
+    public ResponseEntity<PrestamoDto> guardarPrestamo(@RequestBody PrestamoDto prestamoDto) {
         return new ResponseEntity<>(prestamoServicio.guardarPrestamo(prestamoDto), HttpStatus.CREATED);
     }
+
     @GetMapping("/prestamo/{id}")
-    public ResponseEntity< PrestamoDto> buscarPrestamoId(@PathVariable Integer id){
+    public ResponseEntity<PrestamoDto> buscarPrestamoId(@PathVariable Integer id) {
         return new ResponseEntity<>(prestamoServicio.buscarPrestamoId(id), HttpStatus.OK);
     }
+
     @DeleteMapping("prestamo/{id}")
-    public ResponseEntity<Map<String,Boolean>> eliminarPrestamo(@PathVariable Integer id){
+    public ResponseEntity<Map<String, Boolean>> eliminarPrestamo(@PathVariable Integer id) {
         prestamoServicio.eliminarPrestamo(id);
-        Map<String,Boolean>respuesta = new HashMap<>();
-        respuesta.put("eliminado",Boolean.TRUE);
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
 }
